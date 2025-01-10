@@ -118,7 +118,7 @@ const ProjectCreationForm: React.FC<{
                 >
                   <option value="">Select User</option>
                   {users.map(user => (
-                    <option key={user._id} value={user._id}>
+                    <option key={user._id} value={user.name}>
                       {user.name}:({user.role})
                     </option>
                   ))}

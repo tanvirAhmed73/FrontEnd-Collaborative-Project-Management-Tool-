@@ -120,7 +120,6 @@ const MainSection: React.FC = () => {
       console.error('Error deleting project:', error);
     }
   };
-
   return (
     <div>
       {/* Button to open the create form */}
@@ -283,7 +282,7 @@ const MainSection: React.FC = () => {
                 >
                   <option value="">Select User</option>
                   {users.map(user => (
-                    <option key={user._id} value={user._id}>
+                    <option key={user._id} value={user.name}>
                       Name:{user.name}, Role:({user.role} )
                     </option>
                   ))}

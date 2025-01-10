@@ -8,7 +8,6 @@ interface ProjectCardProps {
 
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
- 
   return (
     <div
       onClick={onClick}
