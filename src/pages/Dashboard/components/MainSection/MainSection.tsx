@@ -136,7 +136,6 @@ const MainSection: React.FC = () => {
       {/* Project creation form */}
       {formVisible && (
         <ProjectCreationForm
-          user = {user}
           onClose={() => setFormVisible(false)} 
           onCreate={handleCreateProject} 
         />
@@ -283,7 +282,7 @@ const MainSection: React.FC = () => {
                 >
                   <option value="">Select User</option>
                   {users.map(user => (
-                    <option key={user._id} value={user.id}>
+                    <option key={user.id} value={user.id}>
                       Name:{user.name}, Role:({user.role} )
                     </option>
                   ))}

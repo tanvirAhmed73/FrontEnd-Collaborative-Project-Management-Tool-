@@ -4,9 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Dashboard from './pages/Dashboard/Dashboard';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
-import AuthContext, { AuthProvider } from './context/AuthProvider';
-import { useContext, useEffect } from 'react';
-import ProtectedRoute from './ProtectedRoutes/ProtectedRoutes';
+import{ AuthProvider } from './context/AuthProvider';
 
 function App() {
   

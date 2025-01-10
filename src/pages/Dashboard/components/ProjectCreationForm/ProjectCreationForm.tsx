@@ -6,7 +6,7 @@ import { Calendar, CheckCircle, User, FileText, X } from 'lucide-react';
 
 const ProjectCreationForm: React.FC<{
   onClose: () => void;
-  onCreate: (project: { title: string; description: string; assignedTo: string | null; status: string; dueDate: Date }) => void;
+  onCreate: (project: {  _id: string;title: string; description: string; assignedTo: string | null; status: string; dueDate: Date }) => void;
 }> = ({ onClose, onCreate }) => {
   const [projectName, setProjectName] = useState('');
   const [projectDescription, setProjectDescription] = useState('');
