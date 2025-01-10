@@ -27,18 +27,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const checkAuth = async () => {
     try {
-      console.log("accessToken");
       const accessToken = localStorage.getItem("accessToken");
       if (!accessToken) {
         setUser(null);
         return;
       }
-      console.log("calling", accessToken);
-      const response = await axios.get("http://localhost:3000/user/check-auth", {
+      const response = await axios.get("https://backend-collaborative-project-management.onrender.com/user/check-auth", {
         headers: { Authorization: `${accessToken}` },
       });
       if (response) {
-        console.log("resp",response.data.user);
         setUser(response.data.user);
       } else {
         setUser(null);
@@ -58,13 +55,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log("user exist",user);
   const signUp = async (data: RegisterFormData) => {
     try {
       setLoading(true);
       setError("");
       const response = await axios.post(
-        "http://localhost:3000/user/signup",
+        "https://backend-collaborative-project-management.onrender.com/user/signup",
         data
       );
       if (response.data) {
@@ -84,13 +80,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setLoading(true);
       setError("");
       const response = await axios.post(
-        "http://localhost:3000/user/signin",
+        "https://backend-collaborative-project-management.onrender.com/user/signin",
         data
       );
-      if (response.data.acessToken) {
+      if (response) {
         localStorage.setItem("accessToken", response.data.acessToken);
         setUser(response.data.user);
         navigate("/dashboard");
+
       }
     } catch (error: unknown) {
       const err = error as ApiError;

@@ -18,7 +18,7 @@ const MainSection: React.FC = () => {
     // Fetch users when component mounts
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/user/allusers');
+        const response = await axios.get('https://backend-collaborative-project-management.onrender.com/user/allusers');
         setUsers(response.data);
       } catch (error) {
         console.error('Error fetching users:', error);
@@ -36,15 +36,12 @@ const MainSection: React.FC = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        console.log("projects"); // Fetch and set the project data
         const accessToken = localStorage.getItem('accessToken');
-        console.log("accestoken",accessToken); // Fetch and set the project data
-        const response = await axios.get('http://localhost:3000/task',{
+        const response = await axios.get('https://backend-collaborative-project-management.onrender.com/task',{
           headers:{
             Authorization:`${accessToken}`
           }
         });
-        console.log(response); // Fetch and set the project data
         setProjects(response.data);
       } catch (error) {
         console.error('Error fetching projects:', error);
@@ -80,8 +77,7 @@ const MainSection: React.FC = () => {
         if (!accessToken) {
           throw new Error('Access token is missing. Please log in again.');
         }
-        console.log("selectedProject",selectedProject);
-        const response = await axios.put(`http://localhost:3000/task/${selectedProject._id}`, selectedProject, {
+        const response = await axios.put(`https://backend-collaborative-project-management.onrender.com/task/${selectedProject._id}`, selectedProject, {
           headers: {
             Authorization: `${accessToken}`, // Add the access token here
           },
@@ -111,7 +107,7 @@ const MainSection: React.FC = () => {
       }
   
       // Send the DELETE request with the Authorization header
-      await axios.delete(`http://localhost:3000/task/${projectId}`, {
+      await axios.delete(`https://backend-collaborative-project-management.onrender.com/task/${projectId}`, {
         headers: {
           Authorization: `${accessToken}`, // Add the access token here
         },

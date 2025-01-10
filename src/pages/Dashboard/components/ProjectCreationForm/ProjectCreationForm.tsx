@@ -19,8 +19,7 @@ const ProjectCreationForm: React.FC<{
     // Fetch users when component mounts
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/user/allusers');
-        console.log(response)
+        const response = await axios.get('https://backend-collaborative-project-management.onrender.com/user/allusers');
         setUsers(response.data);
       } catch (error) {
         console.error('Error fetching users:', error);
@@ -44,12 +43,11 @@ const ProjectCreationForm: React.FC<{
         if (!accessToken) {
           throw new Error('Access token is missing. Please log in again.');
         }
-        const response = await axios.post('http://localhost:3000/task', newProject,{
+        const response = await axios.post('https://backend-collaborative-project-management.onrender.com/task', newProject,{
           headers: {
             Authorization: `${accessToken}`,
           },
         });
-        console.log('Project added:', response.data);
         
         onCreate(response.data);
         onClose();
