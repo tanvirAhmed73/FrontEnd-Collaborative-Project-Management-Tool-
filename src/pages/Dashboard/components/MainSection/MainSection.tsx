@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProjectCard from "../ProjectCard/ProjectCard";
 import ProjectCreationForm from '../ProjectCreationForm/ProjectCreationForm';
 import { Project } from '../../../../interfaces/project';
 import { X } from 'lucide-react';
-import AuthContext from '../../../../context/AuthProvider';
 
 
 
