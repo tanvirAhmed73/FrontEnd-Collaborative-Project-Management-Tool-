@@ -3,17 +3,18 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import { Calendar, CheckCircle, User, FileText, X } from 'lucide-react';
+import { Project } from '../../../../interfaces/project';
 
 const ProjectCreationForm: React.FC<{
   onClose: () => void;
-  onCreate: (project: {  _id: string;title: string; description: string; assignedTo: string | null; status: string; dueDate: Date }) => void;
+  onCreate:  (project: Project) => void;
 }> = ({ onClose, onCreate }) => {
   const [projectName, setProjectName] = useState('');
   const [projectDescription, setProjectDescription] = useState('');
   const [assignedTo, setAssignedTo] = useState<string | null>(''); 
   const [status, setStatus] = useState('Todo');
   const [dueDate, setDueDate] = useState<string>('');
-  const [users, setUsers] = useState<{ id: string; name: string; role: string; status: string }[]>([]);
+  const [users, setUsers] = useState<{ _id: string; name: string; role: string; status: string }[]>([]);
 
   useEffect(() => {
     // Fetch users when component mounts
@@ -117,7 +118,7 @@ const ProjectCreationForm: React.FC<{
                 >
                   <option value="">Select User</option>
                   {users.map(user => (
-                    <option key={user.id} value={user.id}>
+                    <option key={user._id} value={user._id}>
                       {user.name}:({user.role})
                     </option>
                   ))}

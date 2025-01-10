@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import ProjectCard from "../ProjectCard/ProjectCard";
 import ProjectCreationForm from '../ProjectCreationForm/ProjectCreationForm';
 import { Project } from '../../../../interfaces/project';
 import { X } from 'lucide-react';
+import AuthContext from '../../../../context/AuthProvider';
 
 
 
@@ -12,7 +13,7 @@ const MainSection: React.FC = () => {
   const [popupVisible, setPopupVisible] = useState<boolean>(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [formVisible, setFormVisible] = useState(false);
-  const [users, setUsers] = useState<{ id: string; name: string; role: string; status: string }[]>([]);
+  const [users, setUsers] = useState<{ _id: string; name: string; role: string; status: string }[]>([]);
 
   useEffect(() => {
     // Fetch users when component mounts
@@ -28,10 +29,7 @@ const MainSection: React.FC = () => {
   }, []);
 
 
-  // const {user} = useContext(AuthContext);
-  const user = {
-    role: 'admin'
-  }
+
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -42,6 +40,7 @@ const MainSection: React.FC = () => {
             Authorization:`${accessToken}`
           }
         });
+        console.log(response.data);
         setProjects(response.data);
       } catch (error) {
         console.error('Error fetching projects:', error);
@@ -202,7 +201,10 @@ const MainSection: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                {(user.role === 'admin' || user.role === 'manager') && (
+
+                
+
+                
                   <div className="mt-4 text-right">
                     <button
                       onClick={() => handleDelete(project._id)}
@@ -211,7 +213,7 @@ const MainSection: React.FC = () => {
                       Delete
                     </button>
                   </div>
-                )}
+                
               </div>
             ))}
           </div>
@@ -282,7 +284,7 @@ const MainSection: React.FC = () => {
                 >
                   <option value="">Select User</option>
                   {users.map(user => (
-                    <option key={user.id} value={user.id}>
+                    <option key={user._id} value={user._id}>
                       Name:{user.name}, Role:({user.role} )
                     </option>
                   ))}
