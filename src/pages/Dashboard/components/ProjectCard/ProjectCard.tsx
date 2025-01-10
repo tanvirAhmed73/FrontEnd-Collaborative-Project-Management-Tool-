@@ -1,7 +1,5 @@
-import React, { useEffect } from 'react';
 import { Project } from '../../../../interfaces/project';
 import { CalendarDays, CheckCircle, Clock } from 'lucide-react';
-import { h1 } from 'framer-motion/client';
 
 interface ProjectCardProps {
   project: Project;
